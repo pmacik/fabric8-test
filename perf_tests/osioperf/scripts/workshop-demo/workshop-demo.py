@@ -450,7 +450,7 @@ class UserScenario(TaskSet):
                 target_element = self._wait_for_clickable_element(
                     driver,
                     By.XPATH,
-                    "//f8launcher-missionruntime-createapp-step//*[@class='f8launcher-continue']//*[contains(@class,'btn')]"
+                    "//*[contains(@id,'MissionRuntime')]//f8launcher-button-next-step//*[contains(@class,'btn')]"
                 )
                 driver.execute_script(
                     "arguments[0].scrollIntoView(false);", target_element)
@@ -483,7 +483,7 @@ class UserScenario(TaskSet):
                 target_element = self._wait_for_clickable_element(
                     driver,
                     By.XPATH,
-                    "//f8launcher-releasestrategy-createapp-step//*[@class='f8launcher-continue']//*[contains(@class,'btn')]"
+                    "//*[contains(@id,'ReleaseStrategy')]//f8launcher-button-next-step//*[contains(@class,'btn')]"
                 )
                 driver.execute_script(
                     "arguments[0].scrollIntoView(false);", target_element)
@@ -521,7 +521,7 @@ class UserScenario(TaskSet):
                 target_element = self._wait_for_clickable_element(
                     driver,
                     By.XPATH,
-                    "//f8launcher-gitprovider-createapp-step//*[@class='f8launcher-continue']//*[contains(@class,'btn')]"
+                    "//*[contains(@id,'GitProvider')]//f8launcher-button-next-step//*[contains(@class,'btn')]"
                 )
                 driver.execute_script(
                     "arguments[0].scrollIntoView(false);", target_element)
@@ -544,14 +544,14 @@ class UserScenario(TaskSet):
                 self._wait_for_clickable_element(
                     driver,
                     By.XPATH,
-                    "//f8launcher-projectsummary-createapp-step//*[contains(text(),'Mission')]//ancestor::*[contains(@class,'card-pf--xsmall')]//*[contains(text(),'{}')]".format(
+                    "//*[contains(@id, 'ProjectSummary')]//f8launcher-mission-runtime-review//*[contains(text(),'{}')]".format(
                         launcherMission
                     )
                 )
                 self._wait_for_clickable_element(
                     driver,
                     By.XPATH,
-                    "//f8launcher-projectsummary-createapp-step//*[contains(text(),'Runtime')]//ancestor::*[contains(@class,'card-pf--xsmall')]//*[contains(text(),'{}')]".format(
+                    "//*[contains(@id, 'ProjectSummary')]//f8launcher-mission-runtime-review//*[contains(text(),'{}')]".format(
                         launcherRuntime
                     )
                 )
@@ -614,10 +614,17 @@ class UserScenario(TaskSet):
                         "Configuring to trigger builds on Git pushes"
                     )
                 )
+                self._wait_for_clickable_element(
+                    driver,
+                    By.XPATH,
+                    self._project_booster_ok_icon(
+                        "Setting up your codebase"
+                    )
+                )
                 target_element = self._wait_for_clickable_element(
                     driver,
                     By.XPATH,
-                    "//*[contains(@class,'f8launcher-continue')]//*[contains(text(),'View New Application')]"
+                    "//*[contains(@class,'f8launcher-continue')]//*[contains(text(),'Return to your Dashboard')]"
                 )
                 self._report_success(request_type, metric, self._tick_timer())
             except Exception as ex:
@@ -877,9 +884,9 @@ class UserScenario(TaskSet):
         if not failed:
             self._reset_timer()
             try:
-                mySpacesUrl = "{}/_myspaces".format(self.userUrl)
+                mySpacesUrl = "{}/_spaces".format(self.userUrl)
                 driver.get(mySpacesUrl)
-                self._wait_for_url(driver, "_myspaces")
+                self._wait_for_url(driver, "_spaces")
                 target_element = self._wait_for_clickable_element(
                     driver,
                     By.XPATH,

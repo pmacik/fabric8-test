@@ -45,3 +45,7 @@ RUN git clone --depth 1 https://github.com/fabric8io/fabric8-test/
 WORKDIR /home/perftest/fabric8-test/perf_tests/osioperf/scripts/workshop-demo/
 
 COPY users.properties users.properties
+
+#dev
+COPY run.sh run.sh
+COPY workshop-demo.py workshop-demo.py

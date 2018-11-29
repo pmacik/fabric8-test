@@ -30,7 +30,7 @@ remove_container "$TEST_CONTAINER_NAME"
 
 echo; echo "[Building docker image]";
 if [ "$USERS_PROPERTIES_FILE" != "users.properties" ]; then
-    cp -vf "$USERS_PROPERTIES_FILE" users.properties
+    cat "$USERS_PROPERTIES_FILE" > users.properties
 fi
 docker build -f Dockerfile.builder -t "$TEST_IMAGE_NAME" . > "$ARTIFACTS_DIR/docker-build.log"
 if [ "$USERS_PROPERTIES_FILE" != "users.properties" ]; then
