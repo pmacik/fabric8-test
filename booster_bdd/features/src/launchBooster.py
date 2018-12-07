@@ -19,7 +19,7 @@ class LaunchBooster(object):
         spaceName = helpers.getSpaceName()
         authHeader = 'Bearer {}'.format(theToken)
 
-        gitRepo = '{}-{}'.format(spaceName, projectName)
+        gitRepo = '{}'.format(projectName)
         helpers.setGithubRepo(gitRepo)
 
         print('Starting test.....')

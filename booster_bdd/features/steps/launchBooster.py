@@ -19,7 +19,10 @@ def given_space_created(_context):
 
 @when(u'I input input the name, mission, runtime, and pipeline of the new booster')
 def when_input_booster(_context):
-    projectName = os.getenv('PROJECT_NAME')
+    projectName = '{}-{}'.format(
+        helpers.getSpaceName(),
+        os.getenv('PROJECT_NAME')
+    ).lower()
     mission = os.getenv('BOOSTER_MISSION')
     boosterRuntime = os.getenv('BOOSTER_RUNTIME').split(":", 1)
     runtime = boosterRuntime[0]
